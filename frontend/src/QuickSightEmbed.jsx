@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import config from './config';
 
 export default function QuickSightEmbed() {
   const containerRef = useRef(null);
@@ -10,7 +11,8 @@ export default function QuickSightEmbed() {
     // Fetch the embed URL from your backend
     const fetchEmbedUrl = async () => {
       try {
-        const response = await fetch('http://localhost:8004/get-embed-url/');
+        console.log("==>", config.API_BASE_URL);
+        const response = await fetch(`${config.API_BASE_URL}/get-embed-url/`);
         if (!response.ok) {
           throw new Error('Failed to fetch embed URL');
         }

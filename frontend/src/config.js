@@ -4,10 +4,15 @@ const config = {
     API_BASE_URL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8004'
   },
   production: {
-    API_BASE_URL: import.meta.env.VITE_API_BASE_URL || 'https://api.yourdomain.com'
+    API_BASE_URL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8004'
   }
 };
 
 const environment = import.meta.env.MODE || 'development';
+
+
+console.log('Environment:', environment);
+console.log('VITE_API_BASE_URL:', import.meta.env.VITE_API_BASE_URL);
+console.log('Config:', config[environment]);
 
 export default config[environment];

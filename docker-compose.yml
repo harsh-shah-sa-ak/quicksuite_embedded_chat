@@ -6,18 +6,9 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     ports:
-      - "8000:8000"
-    environment:
-      - AWS_REGION=${AWS_REGION}
-      - AWS_ACCOUNT_ID=${AWS_ACCOUNT_ID}
-      - BEDROCK_AGENT_ID=${BEDROCK_AGENT_ID}
-      - QS_TOPIC_ID=${QS_TOPIC_ID}
-      - QUICKSIGHT_NAMESPACE=${QUICKSIGHT_NAMESPACE}
-      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
-      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
-      - AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN}
-      - Q_BUSINESS_APP_ID=${Q_BUSINESS_APP_ID}
-      - USER_ID=${USER_ID}
+      - "8004:8004"
+    env_file:
+      - ./backend/.env
     networks:
       - app-network
 
@@ -26,7 +17,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - "80:80"
+      - "8080:4173"
     depends_on:
       - backend
     networks:

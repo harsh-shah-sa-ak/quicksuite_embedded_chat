@@ -34,6 +34,7 @@ AWS_USER_ARN = os.getenv("AWS_USER_ARN_AK")
 AGENT_ALIAS_ID = "CUSTOMER_ANALYTICS_AGENT_AK"
 Q_BUSINESS_APP_ID = os.getenv("Q_BUSINESS_APP_ID_AK")
 USER_ID = os.getenv("USER_ID_AK")
+IFRAME_DOMAIN = os.getenv("IFRAME_DOMAIN")
 
 
 
@@ -336,7 +337,7 @@ def get_embed_url():
         UserArn=AWS_USER_ARN,
         ExperienceConfiguration={"QuickChat": {}},
         AllowedDomains=[
-            "http://localhost:5173"  # your local React domain
+            IFRAME_DOMAIN
         ]
     )
     
@@ -372,7 +373,7 @@ async def generate_embed_url(request: EmbedURLRequest):
             SessionLifetimeInMinutes=request.session_lifetime_minutes,
             UserArn=request.user_arn,
             ExperienceConfiguration=experience_configuration,
-            AllowedDomains=['http://localhost:5173']  # Update with your domains
+            AllowedDomains=[IFRAME_DOMAIN]  # Update with your domains
         )
         
         return EmbedURLResponse(
